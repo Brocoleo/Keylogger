@@ -12,11 +12,10 @@ generar_key()
 
 key = cargar_key()
 
-password = b'tucontrasenaaqui'
-
-file = open('pass.enc', 'wb')
+mensaje = b'tucontrasenaaqui'
 
 clave = Fernet(key)
-pass_enc = clave.encrypt(password)
-file.write(pass_enc)
-file.close()
+pass_enc = clave.encrypt(mensaje)
+print(pass_enc)
+pass_decrypt = clave.decrypt(pass_enc)
+print(pass_decrypt)
